@@ -1,1 +1,30 @@
-pm
+import kernels
+import os
+import sys
+from importlib import metadata
+
+print("kernels package :", kernels.__file__)
+print("kernels version :", metadata.version("kernels"))
+
+print("\nRecherche finegrained-fp8...")
+for p in sys.path:
+    if p and os.path.isdir(p):
+        try:
+            matches = [
+                x for x in os.listdir(p)
+                if "finegrained" in x.lower() or "fp8" in x.lower()
+            ]
+            if matches:
+                print(p, "=>", matches)
+        except:
+            pass
+
+
+
+
+import kernels
+print(dir(kernels))
+
+
+
+"kernels-community/finegrained-fp8"
