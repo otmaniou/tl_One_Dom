@@ -28,3 +28,36 @@ print(dir(kernels))
 
 
 "kernels-community/finegrained-fp8"
+
+
+
+
+
+
+import kernels
+import inspect
+
+print("=== kernels ===")
+print("version :", kernels.__version__)
+
+print("\n=== Kernels déjà chargés ===")
+try:
+    print(kernels.get_loaded_kernels())
+except Exception as e:
+    print("Erreur :", repr(e))
+
+print("\n=== API get_local_kernel ===")
+print(inspect.signature(kernels.get_local_kernel))
+
+print("\n=== API has_kernel ===")
+print(inspect.signature(kernels.has_kernel))
+
+print("\n=== Test finegrained-fp8 ===")
+for name in [
+    "finegrained-fp8",
+    "kernels-community/finegrained-fp8"
+]:
+    try:
+        print(name, "=>", kernels.has_kernel(name))
+    except Exception as e:
+        print(name, "=> erreur :", repr(e))
