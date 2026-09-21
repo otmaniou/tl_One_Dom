@@ -23,3 +23,29 @@ print("Mem-efficient enabled:",
       torch.backends.cuda.mem_efficient_sdp_enabled())
 print("Math SDPA enabled:",
       torch.backends.cuda.math_sdp_enabled())
+
+
+
+
+
+
+from torch.nn.attention import sdpa_kernel, SDPBackend
+
+with sdpa_kernel(SDPBackend.FLASH_ATTENTION):
+    # lance exactement ton traitement habituel
+    ...
+
+
+
+
+import torch
+
+print(
+    "FlashAttention PyTorch disponible :",
+    torch.backends.cuda.is_flash_attention_available()
+)
+
+
+
+attn_implementation="flash_attention_3"
+
