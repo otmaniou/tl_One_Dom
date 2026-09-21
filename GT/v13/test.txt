@@ -1,0 +1,25 @@
+import torch
+import transformers
+
+print("Torch       :", torch.__version__)
+print("CUDA Torch  :", torch.version.cuda)
+print("Transformers:", transformers.__version__)
+print("GPU         :", torch.cuda.get_device_name(0))
+
+print("\n--- Attention config ---")
+print("_attn_implementation:",
+      getattr(model.config, "_attn_implementation", None))
+
+print("attn_implementation:",
+      getattr(model.config, "attn_implementation", None))
+
+print("_attn_implementation_internal:",
+      getattr(model.config, "_attn_implementation_internal", None))
+
+print("\n--- SDPA CUDA ---")
+print("Flash SDPA enabled:",
+      torch.backends.cuda.flash_sdp_enabled())
+print("Mem-efficient enabled:",
+      torch.backends.cuda.mem_efficient_sdp_enabled())
+print("Math SDPA enabled:",
+      torch.backends.cuda.math_sdp_enabled())
